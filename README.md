@@ -124,7 +124,8 @@ pip install pandas numpy matplotlib statsmodels scikit-learn xgboost tensorflow
 
 #> 50%：参考意义有限
 
-## 模型调用
+## 📌 模型调用
+
 ### sarima模型调用 （step即预测周期）
 ```
 forecast_mean, forecast_ci = sarima_predict(train_data['wms实际发货数量'], steps=30)
@@ -152,7 +153,7 @@ xgboost_predictions = xgboost_predict(values, window_in=15, window_out=30)
 建议定期滚动重训模型，保持参数与数据新鲜度。
 
 ### 数据补足后可选方案
-1. 调整sarima模型架构
+### 1. 调整sarima模型架构
 ```# 安装所需库: pip install pmdarima
 
 plt.rcParams['font.sans-serif'] = ['SimHei']
@@ -190,7 +191,7 @@ fit_model = model.fit(disp=False)
 forecast = fit_model.get_forecast(steps=test_size)
 ``` 
 
-2.调整LSTM模型
+### 2.调整LSTM模型
 ```# 根据数据量自动调整参数
 total_samples = len(df_grouped)
 
