@@ -123,6 +123,8 @@ pip install pandas numpy matplotlib statsmodels scikit-learn xgboost tensorflow
 
 > 50%：参考意义有限
 
+## 模型调用
+
 ## 📌 注意事项
 
 目前数据量较少，模型训练效果会受限，预测趋势过于拟合。（后续可调整）
@@ -135,6 +137,100 @@ pip install pandas numpy matplotlib statsmodels scikit-learn xgboost tensorflow
 建议定期滚动重训模型，保持参数与数据新鲜度。
 """
 
+### 数据补足后可选方案
+1. 调整sarima模型架构
+```# 安装所需库: pip install pmdarima
 
+plt.rcParams['font.sans-serif'] = ['SimHei']
+plt.rcParams['axes.unicode_minus'] = False
 
+# 数据拆分
+test_size = 30 if len(df_grouped) > 100 
+train_data = df_grouped.iloc[:-test_size]
+test_data = df_grouped.iloc[-test_size:]
+
+print(f"训练集: {len(train_data)}, 测试集: {test_size}")
+
+# 自动选择最佳参数
+auto_model = auto_arima(
+    train_data['wms实际发货数量'],
+    seasonal=True,
+    m=7,
+    trace=True,
+    error_action='ignore',
+    suppress_warnings=True,
+    stepwise=True
+)
+
+print("最佳参数:", auto_model.order, auto_model.seasonal_order)
+
+# 使用最佳参数建模
+model = SARIMAX(
+    train_data['wms实际发货数量'],
+    order=auto_model.order,
+    seasonal_order=auto_model.seasonal_order,
+    trend='n'
+)
+
+fit_model = model.fit(disp=False)
+forecast = fit_model.get_forecast(steps=test_size)
+``` 
+
+2.调整LSTM模型
+```# 根据数据量自动调整参数
+total_samples = len(df_grouped)
+
+if total_samples > 200:
+    window_in, window_out = 30, 30
+    lstm_units, batch_size, epochs = 128, 32, 100
+elif total_samples > 100:
+    window_in, window_out = 21, 30
+    lstm_units, batch_size, epochs = 64, 16, 80
+else:
+    window_in, window_out = 15, 30
+    lstm_units, batch_size, epochs = 32, 8, 50
+
+# 数据准备
+values = df_grouped['wms实际发货数量'].values.reshape(-1, 1)
+scaler = MinMaxScaler(feature_range=(0, 1))
+scaled = scaler.fit_transform(values)
+
+# 创建数据集
+X, Y = [], []
+for i in range(len(scaled) - window_in - window_out + 1):
+    X.append(scaled[i:i+window_in, 0])
+    Y.append(scaled[i+window_in:i+window_in+window_out, 0])
+X, Y = np.array(X), np.array(Y)
+X = X.reshape((X.shape[0], X.shape[1], 1))
+
+# 划分训练验证集
+X_train, X_val, Y_train, Y_val = train_test_split(
+    X, Y, test_size=0.2, random_state=42, shuffle=False
+)
+
+# 构建模型
+model = Sequential()
+model.add(LSTM(lstm_units, return_sequences=True, input_shape=(window_in, 1)))
+model.add(Dropout(0.2))
+model.add(LSTM(lstm_units//2))
+model.add(Dropout(0.2))
+model.add(Dense(window_out))
+
+model.compile(optimizer='adam', loss='mse', metrics=['mae'])
+
+# 训练
+history = model.fit(
+    X_train, Y_train,
+    epochs=epochs,
+    batch_size=batch_size,
+    validation_data=(X_val, Y_val),
+    callbacks=[EarlyStopping(patience=20)],
+    verbose=1
+)
+
+# 预测
+last_input = scaled[-window_in:].reshape(1, window_in, 1)
+pred_scaled = model.predict(last_input)
+pred = scaler.inverse_transform(pred_scaled.reshape(-1, 1)).flatten()
+```
 
