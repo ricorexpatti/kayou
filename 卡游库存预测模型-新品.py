@@ -25,8 +25,6 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import PolynomialFeatures
-
-
 # ### 数据读取
 
 df = pd.read_csv('/Users/allen/Desktop/KAYOU/库存模型/卡游库存/卡牌发货新品.csv', encoding='utf-8')
@@ -89,14 +87,6 @@ plt.show()
 # 数据趋势非线性，且数据量较少，可采取时间序列ARIMA模型
 
 # ## SARIMA模型（季节性7天）
-
-
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from statsmodels.tsa.stattools import adfuller
-from statsmodels.tsa.statespace.sarimax import SARIMAX
-from sklearn.metrics import mean_absolute_error, mean_squared_error
 
 # 设置中文字体
 plt.rcParams['font.sans-serif'] = ['SimHei']
