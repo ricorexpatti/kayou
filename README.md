@@ -47,14 +47,6 @@
 
 ---
 
-## 🛠️ 环境依赖
-
-请确保已安装以下依赖包：
-
-```bash
-pip install pandas numpy matplotlib statsmodels scikit-learn xgboost tensorflow
-
-
 ## 📂 数据准备
 
 将原始数据保存为 `卡牌发货新品.csv`，放在目录中。  
@@ -65,3 +57,13 @@ pip install pandas numpy matplotlib statsmodels scikit-learn xgboost tensorflow
   - `wms实际发货数量`：整数，表示当日发货量  
 
 ---
+
+## 🛠️ 环境依赖
+
+请确保已安装以下依赖包：
+
+```bash
+pip install pandas numpy matplotlib statsmodels scikit-learn xgboost tensorflow
+
+
+
