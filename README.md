@@ -125,7 +125,8 @@ pip install pandas numpy matplotlib statsmodels scikit-learn xgboost tensorflow
 
 ## 模型调用
 ### sarima模型调用 （step即预测周期）
-```forecast_mean, forecast_ci = sarima_predict(train_data['wms实际发货数量'], steps=30)
+```
+forecast_mean, forecast_ci = sarima_predict(train_data['wms实际发货数量'], steps=30)
 ```
 
 ### LSTM模型调用 （window_in为训练周期，window_out为预测周期）
@@ -133,7 +134,7 @@ pip install pandas numpy matplotlib statsmodels scikit-learn xgboost tensorflow
 lstm_predictions = lstm_predict(values, window_in=15, window_out=30)
 ```
 
-### XGBOOST模型调用
+### XGBOOST模型调用 （window_in为训练周期，window_out为预测周期）
 ```values = df_grouped['wms实际发货数量'].values
 xgboost_predictions = xgboost_predict(values, window_in=15, window_out=30)
 ```
