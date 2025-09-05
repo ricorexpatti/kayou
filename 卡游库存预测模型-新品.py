@@ -3,16 +3,11 @@
 
 # ### 安装包
 
-# In[5]:
-
 
 get_ipython().system('pip install xgboost')
 
 
 # ### Package Import
-
-# In[6]:
-
 
 import pandas as pd
 import numpy as np
@@ -34,9 +29,6 @@ from sklearn.preprocessing import PolynomialFeatures
 
 # ### 数据读取
 
-# In[7]:
-
-
 df = pd.read_csv('/Users/allen/Desktop/KAYOU/库存模型/卡游库存/卡牌发货新品.csv', encoding='utf-8')
 
 # 指定格式解析
@@ -51,9 +43,6 @@ print(f"数据总长度: {len(df_grouped)}")
 
 
 # ### 数据类型趋势观察
-
-# In[8]:
-
 
 
 
@@ -100,8 +89,6 @@ plt.show()
 # 数据趋势非线性，且数据量较少，可采取时间序列ARIMA模型
 
 # ## SARIMA模型（季节性7天）
-
-# In[13]:
 
 
 import pandas as pd
@@ -319,9 +306,6 @@ if test_data is not None:
 # 
 
 # ## LSTM模型预测
-
-# In[17]:
-
 
 # 数据准备
 values = df_grouped['wms实际发货数量'].values.reshape(-1, 1)
