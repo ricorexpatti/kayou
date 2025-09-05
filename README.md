@@ -84,7 +84,7 @@ pip install pandas numpy matplotlib statsmodels scikit-learn xgboost tensorflow
 
 4. 未来 30 天预测表
 
-## 📈 模型说明
+## 📈 模型说明 
 
 ### SARIMA
 
@@ -124,7 +124,7 @@ pip install pandas numpy matplotlib statsmodels scikit-learn xgboost tensorflow
 
 #> 50%：参考意义有限
 
-## 📌 模型调用
+## 📌 模型调用 （可自行调整周期）
 
 ### sarima模型调用 （step即预测周期）
 ```
@@ -149,11 +149,10 @@ xgboost_predictions = xgboost_predict(values, window_in=15, window_out=30)
 
 随着数据量增加，优先尝试 XGBoost/LSTM 并进行超参调优与交叉验证。
 
-
 建议定期滚动重训模型，保持参数与数据新鲜度。
 
 ### 数据补足后可选方案
-### 1. 调整sarima模型架构
+### 1. 调整sarima模型架构 （替换原有代码）
 ```# 安装所需库: pip install pmdarima
 
 plt.rcParams['font.sans-serif'] = ['SimHei']
@@ -191,7 +190,7 @@ fit_model = model.fit(disp=False)
 forecast = fit_model.get_forecast(steps=test_size)
 ``` 
 
-### 2.调整LSTM模型
+### 2.调整LSTM模型 （替换原有代码）
 ```# 根据数据量自动调整参数
 total_samples = len(df_grouped)
 
