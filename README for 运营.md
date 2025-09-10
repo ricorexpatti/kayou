@@ -26,7 +26,7 @@ jupyter notebook
 df = pd.read_csv("卡牌发货.csv", encoding="utf-8")
 ```
 ---
-- 把 "卡牌发货.csv" 改成你自己的 Excel/CSV 文件名（文件放在同一个文件夹下）。
+- 把 "卡牌发货.csv" 改成你自己的 CSV 文件名路径。
 - 如果是 Excel 文件，改成：
 ```python
 pd.read_excel("你的文件.xlsx")
