@@ -7,5 +7,5 @@
 ## 2. **安装依赖**  
    打开命令行（Windows 下搜索 `cmd`，Mac 打开 `终端`），输入：  
    ```bash
-   pip install -r requirements.txt
+   pip install pandas numpy matplotlib statsmodels scikit-learn xgboost tensorflow 
    ```
