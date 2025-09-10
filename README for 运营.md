@@ -1,20 +1,28 @@
-# 🛠️ 使用准备
+## 🛠️ 使用准备
 
-## 1. **安装 Python**  
-   - 到 [Python 官网](https://www.python.org/downloads/) 下载并安装最新版（建议 3.10+）。  
-   - 安装时记得勾选 **Add to PATH**。
+### 1. 下载并安装 Anaconda
+- 进入 [Anaconda 下载页面](https://www.anaconda.com/download)  
+- 选择你的操作系统（Windows / Mac / Linux）  
+- 一路点击 **下一步 / Continue** 安装（保持默认设置即可）  
 
-## 2. 安装 `Jupyter` 或者 `pycharm`
-```bash
-pip install notebook
-```
+👉 安装好后，你的电脑里就已经有 **Python + Jupyter Notebook + 必要库** 了。  
+
 ---
 
-## 3. 在项目目录里运行：
-```bash
-jupyter notebook
-```
+### 2. 打开 Jupyter Notebook
+1. 打开 **Anaconda Navigator**  
+2. 点击 **Jupyter Notebook → Launch**  
+3. 浏览器会自动打开
+4. 找到并点击项目文件 `卡游库存预测模型.py`  
 
+---
+
+### 3. 运行代码
+- 在 Jupyter Notebook 里，你会看到一格一格的代码（Cell）  
+- 用鼠标点选第一格，然后点击 **▶ Run**（或键盘按 **Shift + Enter**）  
+- 一格一格往下运行，运行结果会显示在下面  
+
+---
 ---
 ## ✏️ 需要修改什么？
 
