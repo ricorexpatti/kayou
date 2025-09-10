@@ -53,4 +53,23 @@ df = df.rename(columns={"发货量": "wms实际发货数量"})
 - 趋势拟合曲线（预测 vs 实际对比）
 - 模型预测量（未来 30 天的发货量）
 - 误差指标（告诉你预测是否准确：MAE、RMSE、MAPE）
-  
+
+## 📑 误差指标参考
+
+### MAE（Mean Absolute Error，平均绝对误差）
+
+单位为发货量，越低越好。
+
+### RMSE（Root Mean Squared Error，均方根误差）
+
+对大误差更敏感。一般 ≤ 平均发货量的 10%~20% 为较好水平。
+
+### MAPE（Mean Absolute Percentage Error，平均绝对百分比误差）
+
+< 10%：非常好
+
+10% ~ 20%：可接受
+
+20% ~ 50%：偏高，需要改进
+
+#> 50%：参考意义有限
