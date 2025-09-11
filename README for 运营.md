@@ -41,8 +41,9 @@ pd.read_excel("你的文件.xlsx")
 ```
 ---
 ### 预测天数
-在代码里找到：
+在166行代码里找到：
 ```python
+period = 30
 window_out = 30
 ```
 ---
