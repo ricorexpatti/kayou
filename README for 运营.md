@@ -21,14 +21,14 @@
 - 在 Jupyter Notebook 里，你会看到一格一格的代码（Cell）  
 - 用鼠标点选第一格，然后点击 **▶ Run**（或键盘按 **Shift + Enter**）  
 - 一格一格往下运行，运行结果会显示在下面  
-
+![Logo](https://i.imgur.com/dw2KoA0.png)
 ---
 ---
 ## ✏️ 需要修改什么？
 
 大多数情况下，你只需要修改 数据路径 和 预测天数。
 
-### 数据文件路径
+### 1. 数据文件路径
 在代码里找到：
 ```python
 df = pd.read_csv("卡牌发货.csv", encoding="utf-8")
@@ -39,20 +39,30 @@ df = pd.read_csv("卡牌发货.csv", encoding="utf-8")
 ```python
 pd.read_excel("你的文件.xlsx")
 ```
+![Logo](https://i.imgur.com/rV83mT6.png)
+
 ---
-### 预测天数
+### 2. 拆分训练集和测试集
+- 一般来说，我们选取80%的数据长度作为训练集，20%的数据长度作为测试集。
+- 请根据读取到的数据长度，挑选20%数据长度设置`test_size`
+![Logo](https://i.imgur.com/SxSskBq.png)
+![Logo](https://i.imgur.com/xwP4UZw.png)
+
+
+### 3. 预测天数
 在166行代码里找到：
 ```python
 period = 30
 window_out = 30
 ```
+![Logo](https://i.imgur.com/Pcqcmx3.png)
+
 ---
-- 默认预测 30 天,可改成 7天、60天等，但请确保你的数据长度足够查询。
+- period = 30 即预测 30 天,可改成7天、60天等，但请确保你前面显示的数据长度足够查询。
 
 ### 列名对应
 确保你的数据文件里，有一列叫 `日期`，另一列叫 `wms实际发货数量`。
-- 如果名字不同，改成你文件里的实际列名。
-- 例如：
+- 
 ```python
 df = df.rename(columns={"发货量": "wms实际发货数量"})
 ```
