@@ -24,7 +24,7 @@
 ![Logo](https://i.imgur.com/dw2KoA0.png)
 ---
 ---
-## ✏️ 需要修改什么？
+## ✏️ 使用步骤？
 
 大多数情况下，你只需要修改 数据路径 和 预测天数。
 
@@ -41,32 +41,33 @@ pd.read_excel("你的文件.xlsx")
 ```
 ![Logo](https://i.imgur.com/rV83mT6.png)
 
----
-### 2. 拆分训练集和测试集
-- 一般来说，我们选取80%的数据长度作为训练集，20%的数据长度作为测试集。
-- 请根据读取到的数据长度，挑选20%数据长度设置`test_size`
-![Logo](https://i.imgur.com/SxSskBq.png)
-![Logo](https://i.imgur.com/xwP4UZw.png)
-
-
-### 3. 预测天数
-在166行代码里找到：
-```python
-period = 30
-window_out = 30
-```
-![Logo](https://i.imgur.com/Pcqcmx3.png)
-
----
-- period = 30 即预测 30 天,可改成7天、60天等，但请确保你前面显示的数据长度足够查询。
-
 ### 列名对应
-确保你的数据文件里，有一列叫 `日期`，另一列叫 `wms实际发货数量`。
+⚠️确保你的数据文件里，有一列叫 `日期`，有一列叫`SKU`，还有一列叫 `wms实际发货数量`。
 - 
 ```python
 df = df.rename(columns={"发货量": "wms实际发货数量"})
 ```
 ---
+
+---
+### 2. 拆分训练集和测试集
+- 一般来说，我们选取 80% 的数据长度作为训练集，20% 的数据长度作为测试集。
+- 请根据读取到的数据长度，挑选 20% 数据长度设置`test_size`
+![Logo](https://i.imgur.com/SxSskBq.png)
+![Logo](https://i.imgur.com/xwP4UZw.png)
+
+
+### 3. 预测天数
+在sarima模型板块里找到下列代码：
+```python
+periods = 30
+```
+![Logo](https://i.imgur.com/Pcqcmx3.png)
+
+---
+- periods = 30 即预测 30 天,可改成 7天、60天等，但请确保你前面显示的数据长度足够查询。
+
+
 ## 📊 输出结果
 运行后可看到：
 - 趋势拟合曲线（预测 vs 实际对比）
